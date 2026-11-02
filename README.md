@@ -27,7 +27,7 @@ Ranges 500–899 are reserved for further personas such as guest admins and serv
 
 ## Policy baseline
 
-All 10 policies exclude CA-Exclude-BreakGlass. Five are built in the lab; five are design-only because they need Intune, a separate licence, or later weeks.
+All 10 policies exclude CA-Exclude-BreakGlass. Five are built in the lab; five are design-only because they need Intune, a separate licence, or later phases.
 
 | Policy | Users | Target resources | Conditions | Control |
 | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ All 10 policies exclude CA-Exclude-BreakGlass. Five are built in the lab; five a
 
 | Policy | Why |
 | --- | --- |
-| CA001 | Legacy protocols are not able to do MFA, so they're the main path for password spray attacks. To avoid these scenarios we setup this policy so no sign in from legacy authentication can get in. |
+| CA001 | Legacy protocols are not able to do MFA, so they're the main path for password spray attacks. To avoid these scenarios we set up this policy so no sign in from legacy authentication can get in. |
 | CA002 | MFA confirms the real user approved the sign-in, but it can’t tell whether they were tricked into approving someone else’s device. An attacker can request a code on their own device and persuade a user to enter it on the real Microsoft site. The user passes MFA, and the attacker gets the access. We block this flow because most users don’t need it, and we allow exceptions only for a specific account or device, with a documented reason and a review date. |
 | CA100 | Admin accounts are the highest-value target. Phishing-resistant methods are bound to the real domain, so AiTM kits can't relay them. |
 | CA101 | A stolen admin session is limited to 4 hours, and admins don't stay signed in on shared browsers. |
@@ -73,22 +73,22 @@ Every new policy starts in report-only mode, is tested with the What If tool and
 | --- | --- | --- |
 | CA001 | On | Renamed from CA002 |
 | CA002 | Report-only | New; tested with What If |
-| CA100 | On | Renamed from CA001; uses Require MFA until a passkey is registered (Week 5) |
+| CA100 | On | Renamed from CA001; uses Require MFA until a passkey is registered |
 | CA101 | Design only |  |
 | CA102 | Design only | Needs Intune device compliance |
 | CA200 | Report-only | Renamed from CA003; guests excluded |
-| CA201 | Design only | Built in Week 5 with Identity Protection |
+| CA201 | Design only | Planned with Identity Protection |
 | CA400 | Report-only | New; built in report-only |
-| CA401 | Design only | Needs approved guest apps (Week 11) |
+| CA401 | Design only | Needs approved guest apps |
 | CA900 | Design only | Needs Workload Identities Premium licence |
 
 Before the P2 trial ends around November 30, 2026, enforced policies go back to report-only or off.
 
-## Next steps
+## Roadmap
 
 - [x] Rename CA001, CA002 and CA003 to the new names
 - [x] Build CA002 and CA400 in report-only and test with What If
-- [ ] Register a passkey, then switch CA100 to the phishing-resistant strength (Week 5)
+- [ ] Register a passkey, then switch CA100 to the phishing-resistant strength
 - [x] Register MFA on both break-glass accounts
 - [x] Review the "Why" column before publishing to GitHub
-- [ ] Codify this baseline in Terraform (Week 20)
+- [ ] Codify this baseline in Terraform
